@@ -22,7 +22,7 @@
     <ProjectGuid>{6865BCDB-62B0-45B4-97DB-B36943D3F5EB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Caustics</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
