@@ -72,6 +72,9 @@
     <ClInclude Include="AmbLight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CubeMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -125,6 +128,9 @@
     <ClCompile Include="AmbLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CubeMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Caustic.fs">
@@ -133,10 +139,7 @@
     <None Include="Caustic.vs">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Water.fs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Water.vs">
+    <None Include="cube.vs">
       <Filter>Shaders</Filter>
     </None>
     <None Include="Fresnel.fs">
@@ -145,19 +148,52 @@
     <None Include="Fresnel.vs">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="raytrace.glsl">
+      <Filter>Shaders</Filter>
+    </None>
     <None Include="Reflect.fs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Shadow.vs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Shadow.fs">
       <Filter>Shaders</Filter>
     </None>
     <None Include="Reflect.vs">
       <Filter>Shaders</Filter>
     </None>
     <None Include="Refract.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shadow.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shadow.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Sphere.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Sphere.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Water.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Water.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Drop.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Drop.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Normal.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Normal.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Update.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Update.fs">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

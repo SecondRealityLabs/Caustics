@@ -86,12 +86,15 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\SDKs\freeglut-3.0.0\include;C:\Users\Rafal\Desktop\glew-2.0.0\include;D:\SDKs\FreeGLUT-git_master\freeglut\freeglut\include;D:\SDKs\DevIL x86\include;D:\SDKs\soil\soil-master\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>freeglutd.lib;glew32d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\SDKs\FreeGLUT-git_master\freeglut\freeglut\cmake\lib\Debug;D:\SDKs\GLEW2\glew-2.0.0\cmake\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -114,14 +117,20 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\SDKs\freeglut-3.0.0\include;D:\SDKs\GLEW2\glew-2.0.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <UndefinePreprocessorDefinitions>
+      </UndefinePreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>D:\SDKs\GLEW2\glew-2.0.0\cmake\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -148,6 +157,7 @@
     <ClInclude Include="AmbLight.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Coord.h" />
+    <ClInclude Include="CubeMap.h" />
     <ClInclude Include="DirLight.h" />
     <ClInclude Include="Edge.h" />
     <ClInclude Include="Face.h" />
@@ -167,6 +177,7 @@
     <ClCompile Include="AmbLight.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Coord.cpp" />
+    <ClCompile Include="CubeMap.cpp" />
     <ClCompile Include="DirLight.cpp" />
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="Face.cpp" />
@@ -190,13 +201,23 @@
   <ItemGroup>
     <None Include="Caustic.fs" />
     <None Include="Caustic.vs" />
+    <None Include="cube.vs" />
+    <None Include="Drop.fs" />
+    <None Include="Drop.vs" />
     <None Include="Fresnel.fs" />
     <None Include="Fresnel.vs" />
+    <None Include="Normal.fs" />
+    <None Include="Normal.vs" />
+    <None Include="raytrace.glsl" />
     <None Include="Reflect.fs" />
     <None Include="Reflect.vs" />
     <None Include="Refract.fs" />
     <None Include="Shadow.fs" />
     <None Include="Shadow.vs" />
+    <None Include="Sphere.fs" />
+    <None Include="Sphere.vs" />
+    <None Include="Update.fs" />
+    <None Include="Update.vs" />
     <None Include="Water.fs" />
     <None Include="Water.vs" />
   </ItemGroup>

@@ -67,14 +67,14 @@ int main(int argC, char* argV[])
 		scene->setWaterPosZ("waterPosZ.png");
 
 		// shaders
-		scene->addShader("cubemap.fs", "cubemap.vs");
-		scene->addShader("water.fs", "water.vs");
+		scene->addShader("ambient.fs", "ambient.vs");
 		scene->addShader("caustic.fs", "caustic.vs");
+		scene->addShader("cubemap.fs", "cubemap.vs");
+		scene->addShader("fresnel.fs", "fresnel.vs");
 		scene->addShader("reflect.fs", "reflect.vs");
 		scene->addShader("refract.fs", "refract.vs");
-		scene->addShader("fresnel.fs", "fresnel.vs");
 		scene->addShader("shadow.fs", "shadow.vs");
-		scene->addShader("ambient.fs", "ambient.vs");
+		scene->addShader("water.fs", "water.vs");
 
 		// loop
 		while (!_kbhit())
