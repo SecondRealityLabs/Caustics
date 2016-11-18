@@ -12,11 +12,10 @@ class Mesh
 
 	private:
 
+		std::vector<Coord> coords;
 		std::vector<Edge> indices;
-		std::vector<Vertex> vertices;
 		std::vector<Face> faces;
-		std::vector<Coord> texcoords;
-
+		std::vector<Vertex> vertices;
 
 	public:
 	
@@ -33,12 +32,17 @@ class Mesh
 		void delFace();
 		void delVertex();
 
-
-
-
-
-
 };
+
+
+
+
+
+
+
+
+
+
 
 
 

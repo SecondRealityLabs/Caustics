@@ -2,7 +2,7 @@
 
 class OpenGL
 {
-	
+
 	private:
 
 		bool isWideScreen;
@@ -24,22 +24,11 @@ class OpenGL
 		bool init(void);
 		bool shut(void);
 
-		void setTitle(const char* title);
+		void setTitle(char* title);
 		void setWindow(int x0, int y0, int x1, int y1);
 		void setViewport(int x0, int y0, int x1, int y1);
 		void setFullScreen(bool isOn);
 		void setWideScreen(bool isOn);
-
-		void setMouse();
-
-
-
-
-
-
-
-
-
 
 };
 

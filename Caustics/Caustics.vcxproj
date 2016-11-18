@@ -90,8 +90,9 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\SDKs\freeglut-3.0.0\include;C:\Users\Rafal\Desktop\glew-2.0.0\include;D:\SDKs\FreeGLUT-git_master\freeglut\freeglut\include;D:\SDKs\DevIL x86\include;D:\SDKs\soil\soil-master\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -122,8 +123,12 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\SDKs\freeglut-3.0.0\include;D:\SDKs\GLEW2\glew-2.0.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <UndefinePreprocessorDefinitions>
+      </UndefinePreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -160,6 +165,7 @@
     <ClInclude Include="AmbLight.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Coord.h" />
+    <ClInclude Include="CubeMap.h" />
     <ClInclude Include="DirLight.h" />
     <ClInclude Include="Edge.h" />
     <ClInclude Include="Face.h" />
@@ -180,6 +186,7 @@
     <ClCompile Include="AmbLight.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Coord.cpp" />
+    <ClCompile Include="CubeMap.cpp" />
     <ClCompile Include="DirLight.cpp" />
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="Face.cpp" />
@@ -202,17 +209,72 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Caustic.fs" />
-    <None Include="Caustic.vs" />
-    <None Include="Fresnel.fs" />
-    <None Include="Fresnel.vs" />
-    <None Include="Reflect.fs" />
-    <None Include="Reflect.vs" />
-    <None Include="Refract.fs" />
-    <None Include="Shadow.fs" />
-    <None Include="Shadow.vs" />
-    <None Include="Water.fs" />
-    <None Include="Water.vs" />
+    <None Include="Shaders\Caustic.fs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\Caustic.vs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\cube.vs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\cubemap.fs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\Drop.fs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\Drop.vs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\Fresnel.fs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\Fresnel.vs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\Normal.fs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\Normal.vs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\raytrace.glsl">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\Reflect.fs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\Reflect.vs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\Refract.fs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\Shadow.fs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\Shadow.vs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\Sphere.fs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\Sphere.vs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\Update.fs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\Update.vs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\Water.fs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
+    <None Include="Shaders\Water.vs">
+      <DeploymentContent>false</DeploymentContent>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
