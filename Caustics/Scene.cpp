@@ -88,11 +88,11 @@ bool Scene::addShader(char * fsPath, char * vsPath)
 {
 	Shader sh;
 
-		if (sh.loadFS(fsPath) == true)
-			return(true);
+//		if (sh.addFS(fsPath) == true)
+//			return(true);
 
-		if (sh.loadVS(vsPath) == true)
-			return(true);
+//		if (sh.addVS(vsPath) == true)
+//			return(true);
 
 		shaders.push_back(sh);
 

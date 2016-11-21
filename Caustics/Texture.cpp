@@ -16,6 +16,8 @@ bool Texture::load(char * path)
 
 	bool ret;
 	
+		ret = false;
+	
 		/* load OpenGL texture */
 		texID = SOIL_load_OGL_texture
 		(
@@ -35,7 +37,7 @@ bool Texture::load(char * path)
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glBindTexture(GL_TEXTURE_2D, NULL);
 
-	return true;
+	return (ret);
 
 }
 
@@ -43,6 +45,8 @@ bool Texture::save(char * path)
 {
 
 	bool ret;
+
+		ret = false;
 
 		SOIL_save_image
 		(
@@ -57,6 +61,6 @@ bool Texture::save(char * path)
 		);
 
 
-	return false;
+	return (ret);
 
 }

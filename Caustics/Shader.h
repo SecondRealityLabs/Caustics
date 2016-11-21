@@ -1,9 +1,9 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 #include "OpenGL.h"
-#include "Shader.h"
 
 using namespace std;
 
@@ -11,61 +11,69 @@ class Shader
 {
 
 	private:
-		
-		bool areCompiled;						// are shaders compiled?
-		bool areLinked;							// is shader linked?
 
-		char* fragName;							// fragment shader name
-		char* geomName;							// geometry shader name
-		char* vertName;							// vertex shader name
+		int noOfFS;								// number of fragment shaders
+		int noOfGS;								// number of geometry shaders
+		int noOfVS;								// number of vertex shaders
 
-		GLchar* fragData;						// fragment shader
-		GLchar* geomData;						// geometry shader
-		GLchar* vertData;						// vertex shader
+		vector<char*> fragNames;				// fragment shaders names
+		vector<char*> geomNames;				// geometry shaders names
+		vector<char*> vertNames;				// vertex shaders names
 
-		GLint fragSize;							// fragment size
-		GLint geomSize;							// geometry size
-		GLint vertSize;							// vertex size
+		vector<GLchar*> fragDatas;				// fragment shaders datas
+		vector<GLchar*> geomDatas;				// geometry shaders datas
+		vector<GLchar*> vertDatas;				// vertex shaders datas
 
-		GLint fragProgram;						// fragment program
-		GLint geomProgram;						// geometry program
-		GLint vertProgram;						// vertex program
+		vector<GLint> fragSizes;				// fragment shaders sizes
+		vector<GLint> geomSizes;				// geometry shaders sizes
+		vector<GLint> vertSizes;				// vertex shaders sizes
 
-		GLuint fragObject;						// fragment object
-		GLuint geomObject;						// geometry object
-		GLuint vertObject;						// vertex object
+		vector<GLuint> fragObjects;				// fragment shaders objects
+		vector<GLuint> geomObjects;				// geometry shaders objects
+		vector<GLuint> vertObjects;				// vertex shaders objects
 
-		GLchar infoLog[1024];					// info log
-		GLchar errorLog[1024];					// error log
+		GLuint program;							// program
+
+		GLchar compileLog[1024];				// compile logs
+		GLchar linkLog[1024];					// link logs
 
 	public:
 	
 		Shader();								// shader constructor
 		~Shader();								// shader detructor
 
-		bool loadFS(char* path);				// load fragment shader
-		bool loadGS(char* path);				// load geometry shader
-		bool loadVS(char* path);				// load vertex shader
+		bool addFS(int id, char* path);			// add fragment shader
+		bool addGS(int id, char* path);			// add geometry shader
+		bool addVS(int id, char* path);			// add vertex shader
 
-		bool saveFS(char* path);				// save fragment shader
-		bool saveGS(char* path);				// save geometry shader
-		bool saveVS(char* path);				// save vertex shader
+		bool delFS(int id, char* path);			// del fragment shader
+		bool delGS(int id, char* path);			// del geometry shader
+		bool delVS(int id, char* path);			// del vertex shader
+		
+		bool compileFS(int id);					// compile fragment shader
+		bool compileGS(int id);					// compile geometry shader
+		bool compileVS(int id);					// compile vertex shader
 
-		bool compileFS(void);					// compile fragment shader
-		bool compileGS(void);					// compile geometry shader
-		bool compileVS(void);					// compile vertex shader
+		bool uncompileFS(int id);				// uncompile fragment shader
+		bool uncompileGS(int id);				// uncompile geometry shader
+		bool uncompileVS(int id);				// uncompile vertex shader
 
-		bool uncompileFS(void);					// uncompile 
-		bool uncompileGS(void);					// uncompile
-		bool uncompileVS(void);					// uncompile
+		bool linkFS(int id);					// link fragment shader
+		bool linkGS(int id);					// link geometry shader
+		bool linkVS(int id);					// link vertex shader
 
-		bool linkFS(void);						// link fragment shader
-		bool linkGS(void);						// link geometry shader
-		bool linkVS(void);						// link vertex shader
+		bool unlinkFS(int id);					// unlink fragment shader
+		bool unlinkGS(int id);					// unlink geometry shader
+		bool unlinkVS(int id);					// unlink vertex shader
 
-		bool unlinkFS(void);					// unlink
-		bool unlinkGS(void);					// unlink
-		bool unlinkVS(void);					// unlink
-			
+		bool compile();							// compile all shaders
+		bool link();							// link all shaders
+
+		bool uncompile();						// uncompile all shaders
+		bool unlink();							// unlink all shaders
+
+		bool printLogs();						// print logs
+		bool unprintLogs();						// unprint logs
+
 };
 

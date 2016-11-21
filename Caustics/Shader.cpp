@@ -3,7 +3,9 @@
 
 Shader::Shader()
 {
-
+	noOfFS = 0;
+	noOfGS = 0;
+	noOfVS = 0;
 }
 
 Shader::~Shader()
@@ -11,241 +13,416 @@ Shader::~Shader()
 
 }
 
-bool Shader::loadFS(char * path)
+bool Shader::addFS(int id, char * path)
 {
 
 	FILE* f;
+	GLchar* data;
+	GLuint size;
+
+	GLuint object;
 
 		f = fopen(path, "rb");
 		
-		fseek(f, 0, SEEK_END);
+		fseek(f, 0, SEEK_END);		
 
-		fragSize = ftell(f);
+		size = ftell(f);
 
-		fread(fragData, 1, fragSize, f);
+		rewind(f);
+
+		data = (GLchar*)malloc(size);
+
+		fragSizes.push_back(size);
+
+		fread(data, 1, fragSizes.at(id), f);
 
 		fclose(f);
 
+		fragDatas.push_back(data);
+
+		fragSizes.push_back(size);
+
+		fragObjects.push_back(object);
+
+		noOfFS++;
+		
 	return (false);
 
 }
 
-bool Shader::loadGS(char * path)
+bool Shader::addGS(int id, char * path)
 {
 
 	FILE* f;
+
+	GLchar* data;
+	GLuint size;
+	GLuint object;
 
 		f = fopen(path, "rb");
 
 		fseek(f, 0, SEEK_END);
 
-		fragSize = ftell(f);
+		size = ftell(f);
 
-		fread(fragData, 1, fragSize, f);
+		rewind(f);
+
+		data = (GLchar*)malloc(size);
+
+		geomSizes.push_back(size);
+
+		fread(data, 1, geomSizes.at(id), f);
 
 		fclose(f);
 
+		geomDatas.push_back(data);
+
+		geomSizes.push_back(size);
+
+		geomObjects.push_back(object);
+
+		noOfGS++;
+		
 	return (false);
 
 }
 
-bool Shader::loadVS(char* path)
+bool Shader::addVS(int id, char* path)
 {
 
 	FILE* f;
 
+	GLchar* data;
+	GLuint size;
+	
 		f = fopen(path, "rb");
 
 		fseek(f, 0, SEEK_END);
 
-		fragSize = ftell(f);
+		size = ftell(f);
 
-		fread(fragData, 1, fragSize, f);
+		rewind(f);
+
+		data = (GLchar*)malloc(size);
+
+		vertSizes.push_back(size);
+
+		fread(data, 1, vertSizes.at(id), f);
 
 		fclose(f);
 
+		vertDatas.push_back(data);
+
+		vertSizes.push_back(size);
+
+		noOfVS++;
+		
 	return (false);
 
 }
 
-bool Shader::compileFS(void)
+bool Shader::compileFS(int id) 
 {
 
 	GLint Success;
+	
+		program = glCreateProgram();
 
-		fragObject = glCreateShader(GL_FRAGMENT_SHADER);
+		if (program == 0)
+		{
+			fprintf(stderr, "Error creating shader program\n");
+//			_getch();
 
-		if (fragObject == 0) 
+
+//			exit(1);
+		}
+	
+		fragObjects.at(id) = glCreateShader(GL_FRAGMENT_SHADER);
+
+		if (fragObjects.at(id) == 0) 
 		{
 			fprintf(stderr, "Error creating shader type %d\n", GL_FRAGMENT_SHADER);
-			exit(0);
+
+//			exit(0);
 		}
 
-		glShaderSource(fragObject, 1, &fragData, &fragSize);
-		glCompileShader(fragObject);
-		glGetShaderiv(fragObject, GL_COMPILE_STATUS, &Success);
+		glShaderSource(fragObjects.at(id), 1, &fragDatas.at(id), &fragSizes.at(id));
+		glCompileShader(fragObjects.at(id));
+		glGetShaderiv(fragObjects.at(id), GL_COMPILE_STATUS, &Success);
 
 		if (!Success) 
 		{
-			glGetShaderInfoLog(fragObject, 1024, NULL, infoLog);
-			fprintf(stderr, "Error compiling shader type %d: '%s'\n", GL_FRAGMENT_SHADER, infoLog);
-			exit(1);
+			glGetShaderInfoLog(fragObjects.at(id), 1024, NULL, compileLog);
+			fprintf(stderr, "Error compiling shader type %d: '%s'\n", GL_FRAGMENT_SHADER, compileLog);
+
+//			printLogs();
+//			_getch();
+
+//			exit(1);
 		}
 
-		glAttachShader(fragProgram, fragObject);
+		glAttachShader(program, fragObjects.at(id));
 
 	return false;
 
 }
 
-bool Shader::compileGS(void)
+bool Shader::compileGS(int id)
 {
 
 	GLint Success;
 
-		geomObject = glCreateShader(GL_GEOMETRY_SHADER);
+		program = glCreateProgram();
 
-		if (geomObject == 0)
+		if (program == 0)
+		{
+			fprintf(stderr, "Error creating shader program\n");
+//			_getch();
+//			exit(1);
+		}
+	
+		geomObjects.at(id) = glCreateShader(GL_GEOMETRY_SHADER);
+
+		if (geomObjects.at(id) == 0)
 		{
 			fprintf(stderr, "Error creating shader type %d\n", GL_GEOMETRY_SHADER);
-			exit(0);
+//			exit(0);
 		}
 
-		glShaderSource(geomObject, 1, &geomData, &geomSize);
-		glCompileShader(geomObject);
-		glGetShaderiv(geomObject, GL_COMPILE_STATUS, &Success);
+		glShaderSource(geomObjects.at(id), 1, &geomDatas.at(id), &geomSizes.at(id));
+		glCompileShader(geomObjects.at(id));
+		glGetShaderiv(geomObjects.at(id), GL_COMPILE_STATUS, &Success);
 
 		if (!Success)
 		{
-			glGetShaderInfoLog(geomObject, 1024, NULL, infoLog);
-			fprintf(stderr, "Error compiling shader type %d: '%s'\n", GL_GEOMETRY_SHADER, infoLog);
-			exit(1);
+			glGetShaderInfoLog(geomObjects.at(id), 1024, NULL, compileLog);
+			fprintf(stderr, "Error compiling shader type %d: '%s'\n", GL_GEOMETRY_SHADER, compileLog);
+			
+//			printLogs();
+//			_getch();
+
+//			exit(1);
 		}
 
-		glAttachShader(geomProgram, geomObject);
+		glAttachShader(program, geomObjects.at(id));
 
 	return false;
 
 }
 
-bool Shader::compileVS(void)
+bool Shader::compileVS(int id)
 {
 
 	GLint Success;
 
-		vertObject = glCreateShader(GL_VERTEX_SHADER);
+		program = glCreateProgram();
 
-		if (vertObject == 0)
+		if (program == 0)
+		{
+			fprintf(stderr, "Error creating shader program\n");
+//			_getch();
+//			exit(1);
+		}
+	
+		vertObjects.at(id) = glCreateShader(GL_VERTEX_SHADER);
+
+		if (vertObjects.at(id) == 0)
 		{
 			fprintf(stderr, "Error creating shader type %d\n", GL_VERTEX_SHADER);
-			exit(0);
+//			_getch();
+			
+//			exit(0);
 		}
 
-		glShaderSource(vertObject, 1, &vertData, &vertSize);
-		glCompileShader(vertObject);
-		glGetShaderiv(vertObject, GL_COMPILE_STATUS, &Success);
+		glShaderSource(vertObjects.at(id), 1, &vertDatas.at(id), &vertSizes.at(id));
+		glCompileShader(vertObjects.at(id));
+		glGetShaderiv(vertObjects.at(id), GL_COMPILE_STATUS, &Success);
 
 		if (!Success)
 		{
-			glGetShaderInfoLog(vertObject, 1024, NULL, infoLog);
-			fprintf(stderr, "Error compiling shader type %d: '%s'\n", GL_VERTEX_SHADER, infoLog);
-			exit(1);
+			glGetShaderInfoLog(vertObjects.at(id), 1024, NULL, compileLog);
+			fprintf(stderr, "Error compiling shader type %d: '%s'\n", GL_VERTEX_SHADER, compileLog);
+
+//			printLogs();
+//			_getch();
+
+//			exit(1);
 		}
 
-		glAttachShader(vertProgram, vertObject);
+		glAttachShader(program, vertObjects.at(id));
 
 	return false;
 
 }
 
-bool Shader::linkFS(void)
+bool Shader::linkFS(int id)
 {
 
 	GLint Success = 0;
 
-		glLinkProgram(fragProgram);
-		glGetProgramiv(fragProgram, GL_LINK_STATUS, &Success);
+		glLinkProgram(program);
+		glGetProgramiv(program, GL_LINK_STATUS, &Success);
 
 		if (Success == 0) 
 		{
-			glGetProgramInfoLog(fragProgram, sizeof(errorLog), NULL, errorLog);
-			fprintf(stderr, "Error linking shader program: '%s'\n", errorLog);
-			exit(1);
+			glGetProgramInfoLog(program, sizeof(linkLog), NULL, linkLog);
+			fprintf(stderr, "Error linking shader program: '%s'\n", linkLog);
+
+//			printLogs();
+//			_getch();
+
+//			exit(1);
 		}
 
-		glValidateProgram(fragProgram);
-		glGetProgramiv(fragProgram, GL_VALIDATE_STATUS, &Success);
+		glValidateProgram(program);
+		glGetProgramiv(program, GL_VALIDATE_STATUS, &Success);
 		
 		if (!Success) 
 		{
-			glGetProgramInfoLog(fragProgram, sizeof(errorLog), NULL, errorLog);
-			fprintf(stderr, "Invalid shader program: '%s'\n", errorLog);
-			exit(1);
+			glGetProgramInfoLog(program, sizeof(linkLog), NULL, linkLog);
+			fprintf(stderr, "Invalid shader program: '%s'\n", linkLog);
+
+//			printLogs();
+//			_getch();
+
+//			exit(1);
 		}
 
-		glUseProgram(fragProgram);
+		glUseProgram(program);
 
 	return false;
 
 }
 
-bool Shader::linkGS(void)
+bool Shader::linkGS(int id)
 {
 
 	GLint Success = 0;
 
-		glLinkProgram(geomProgram);
-		glGetProgramiv(geomProgram, GL_LINK_STATUS, &Success);
+		glLinkProgram(program);
+		glGetProgramiv(program, GL_LINK_STATUS, &Success);
 
 		if (Success == 0)
 		{
-			glGetProgramInfoLog(geomProgram, sizeof(errorLog), NULL, errorLog);
-			fprintf(stderr, "Error linking shader program: '%s'\n", errorLog);
-			exit(1);
+			glGetProgramInfoLog(program, sizeof(linkLog), NULL, linkLog);
+			fprintf(stderr, "Error linking shader program: '%s'\n", linkLog);
+
+//			printLogs();
+//			_getch();
+
+//			exit(1);
 		}
 
-		glValidateProgram(geomProgram);
-		glGetProgramiv(geomProgram, GL_VALIDATE_STATUS, &Success);
+		glValidateProgram(program);
+		glGetProgramiv(program, GL_VALIDATE_STATUS, &Success);
 
 		if (!Success)
 		{
-			glGetProgramInfoLog(geomProgram, sizeof(errorLog), NULL, errorLog);
-			fprintf(stderr, "Invalid shader program: '%s'\n", errorLog);
-			exit(1);
+			glGetProgramInfoLog(program, sizeof(linkLog), NULL, linkLog);
+			fprintf(stderr, "Invalid shader program: '%s'\n", linkLog);
+
+//			printLogs();
+//			_getch();
+
+//			exit(1);
 		}
 
-		glUseProgram(geomProgram);
+		glUseProgram(program);
 
 	return false;
 
 }
 
-bool Shader::linkVS(void)
+bool Shader::linkVS(int id)
 {
 
 	GLint Success = 0;
 
-		glLinkProgram(vertProgram);
-		glGetProgramiv(vertProgram, GL_LINK_STATUS, &Success);
+		glLinkProgram(program);
+		glGetProgramiv(program, GL_LINK_STATUS, &Success);
 
 		if (Success == 0)
 		{
-			glGetProgramInfoLog(vertProgram, sizeof(errorLog), NULL, errorLog);
-			fprintf(stderr, "Error linking shader program: '%s'\n", errorLog);
-			exit(1);
+			glGetProgramInfoLog(program, sizeof(linkLog), NULL, linkLog);
+			fprintf(stderr, "Error linking shader program: '%s'\n", linkLog);
+
+//			printLogs();
+//			_getch();
+
+//			exit(1);
 		}
 
-		glValidateProgram(vertProgram);
-		glGetProgramiv(vertProgram, GL_VALIDATE_STATUS, &Success);
+		glValidateProgram(program);
+		glGetProgramiv(program, GL_VALIDATE_STATUS, &Success);
 
 		if (!Success)
 		{
-			glGetProgramInfoLog(vertProgram, sizeof(errorLog), NULL, errorLog);
-			fprintf(stderr, "Invalid shader program: '%s'\n", errorLog);
-			exit(1);
+			glGetProgramInfoLog(program, sizeof(linkLog), NULL, linkLog);
+			fprintf(stderr, "Invalid shader program: '%s'\n", linkLog);
+
+//			printLogs();
+//			_getch();
+
+//			exit(1);
 		}
 
-		glUseProgram(vertProgram);
+		glUseProgram(program);
+
+	return false;
+
+}
+
+bool Shader::compile()
+{
+
+	int i;
+
+		for (i = 0; i < noOfFS; i++)
+			compileFS(i);
+
+		for (i = 0; i < noOfGS; i++)
+			compileGS(i);
+
+		for (i = 0; i < noOfVS; i++)
+			compileVS(i);
+
+	return (false);
+
+}
+
+bool Shader::link()
+{
+
+	int i;
+	
+		for (i = 0; i < noOfFS; i++)
+			linkFS(i);
+
+		for (i = 0; i < noOfGS; i++)
+			linkGS(i);
+
+		for (i = 0; i < noOfVS; i++)
+			linkVS(i);
+
+	return (false);
+
+}
+
+bool Shader::printLogs()
+{
+
+		printf("%s \n", compileLog);
+		printf("%s \n", linkLog);
+	
+	return false;
+
+}
+
+bool Shader::unprintLogs()
+{
+
+		//
+		//
 
 	return false;
 

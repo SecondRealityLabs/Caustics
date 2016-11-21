@@ -88,13 +88,13 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\SDKs\freeglut-3.0.0\include;C:\Users\Rafal\Desktop\glew-2.0.0\include;D:\SDKs\FreeGLUT-git_master\freeglut\freeglut\include;D:\SDKs\DevIL x86\include;D:\SDKs\soil\soil-master\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\SDKs\freeglut-3.0.0\include;C:\Users\Rafal\Desktop\glew-2.0.0\include;D:\SDKs\FreeGLUT-git_master\freeglut\freeglut\include;D:\SDKs\DevIL x86\include;D:\SDKs\soil\soil-master\inc;C:\Users\Rafal\Desktop\Desktop\glew-2.0.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>freeglutd.lib;glew32d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\SDKs\FreeGLUT-git_master\freeglut\freeglut\cmake\lib\Debug;D:\SDKs\GLEW2\glew-2.0.0\cmake\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>freeglutd.lib;glew32d.lib;soil.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\SDKs\FreeGLUT-git_master\freeglut\freeglut\cmake\lib\Debug;D:\SDKs\GLEW2\glew-2.0.0\cmake\lib\Debug;D:\SDKs\soil\soil-master\cmake\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -155,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AmbLight.h" />
+    <ClInclude Include="backup.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Coord.h" />
     <ClInclude Include="CubeMap.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Edge.h" />
     <ClInclude Include="Face.h" />
     <ClInclude Include="Light.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="OpenGL.h" />
@@ -175,6 +177,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AmbLight.cpp" />
+    <ClCompile Include="backup.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Coord.cpp" />
     <ClCompile Include="CubeMap.cpp" />
@@ -201,6 +204,7 @@
   <ItemGroup>
     <None Include="Caustic.fs" />
     <None Include="Caustic.vs" />
+    <None Include="Cube.fs" />
     <None Include="cube.vs" />
     <None Include="Drop.fs" />
     <None Include="Drop.vs" />
@@ -208,7 +212,9 @@
     <None Include="Fresnel.vs" />
     <None Include="Normal.fs" />
     <None Include="Normal.vs" />
+    <None Include="RayTrace.fs" />
     <None Include="raytrace.glsl" />
+    <None Include="RayTrace.vs" />
     <None Include="Reflect.fs" />
     <None Include="Reflect.vs" />
     <None Include="Refract.fs" />

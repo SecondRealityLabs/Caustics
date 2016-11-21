@@ -7,9 +7,8 @@
 
 #include "targetver.h"
 
+#include <conio.h>
 #include <stdio.h>
 #include <tchar.h>
-
-
 
 // TODO: reference additional headers your program requires here

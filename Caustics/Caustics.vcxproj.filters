@@ -75,6 +75,12 @@
     <ClInclude Include="CubeMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="backup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -129,6 +135,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CubeMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -194,6 +203,15 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="Update.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Cube.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="RayTrace.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="RayTrace.fs">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

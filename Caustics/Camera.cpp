@@ -19,14 +19,14 @@ void Camera::shut(void)
 {
 }
 
-void Camera::setPosition(float x, float y, float z)
+void Camera::setPosition(float& x, float& y, float& z)
 {
 }
 
-void Camera::setLookAt(float x, float y, float z)
+void Camera::setLookAt(float& x, float& y, float& z)
 {
 }
 
-void Camera::setFOV(float fov)
+void Camera::setFOV(float& fov)
 {
 }

@@ -2,10 +2,11 @@
 
 #include <vector>
 
+#include "Shader.h"
+
 #include "Camera.h"
 #include "Light.h"
 #include "Model.h"
-#include "Shader.h"
 
 class Scene
 {
