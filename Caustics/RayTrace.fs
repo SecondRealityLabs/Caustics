@@ -1,9 +1,3 @@
-
-
-
-
-
-
   const float IOR_AIR = 1.0;
   const float IOR_WATER = 1.333;
   const vec3 abovewaterColor = vec3(0.25, 1.0, 1.25);
@@ -45,6 +39,7 @@
 
   vec3 getWallColor(vec3 point)
   {
+
     float scale = 0.5;
     
     vec3 wallColor;

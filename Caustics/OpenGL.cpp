@@ -36,6 +36,13 @@ int OpenGL::scaleH(int height, float ratio)
 
 bool OpenGL::init(void)
 {
+	int argC;
+	char** argV;
+
+		argC = 0;
+		argV = NULL;
+
+		glutInit(&argC, argV);
 	
 	return false;
 
@@ -49,17 +56,30 @@ bool OpenGL::shut(void)
 void OpenGL::setMode(long mode)
 {
 	winMode = mode;
+
+	glutInitDisplayMode(mode);
+
 }
 
 void OpenGL::setTitle(char * title)
 {
-//	strcpy(winTitle, title);
+
+	winTitle = (char*)malloc(strlen(title));
+	strcpy(winTitle, title);
+
 }
 
 void OpenGL::setWindow(int width, int height)
 {
+
 	winW = width;
 	winH = height;
+
+	glutInitWindowSize(width, height);
+	glutInitWindowPosition(0, 0);
+
+	glutCreateWindow(winTitle);
+
 }
 
 void OpenGL::setViewport(int width, int height)

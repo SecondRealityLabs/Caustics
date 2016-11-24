@@ -167,6 +167,7 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="OpenGL.h" />
+    <ClInclude Include="PointLight.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="SpotLight.h" />
@@ -189,6 +190,7 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="OpenGL.cpp" />
+    <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="SpotLight.cpp" />
@@ -202,30 +204,22 @@
     <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Caustic.fs" />
-    <None Include="Caustic.vs" />
-    <None Include="Cube.fs" />
-    <None Include="cube.vs" />
-    <None Include="Drop.fs" />
-    <None Include="Drop.vs" />
-    <None Include="Fresnel.fs" />
-    <None Include="Fresnel.vs" />
-    <None Include="Normal.fs" />
-    <None Include="Normal.vs" />
-    <None Include="RayTrace.fs" />
-    <None Include="raytrace.glsl" />
-    <None Include="RayTrace.vs" />
-    <None Include="Reflect.fs" />
-    <None Include="Reflect.vs" />
-    <None Include="Refract.fs" />
-    <None Include="Shadow.fs" />
-    <None Include="Shadow.vs" />
-    <None Include="Sphere.fs" />
-    <None Include="Sphere.vs" />
-    <None Include="Update.fs" />
-    <None Include="Update.vs" />
-    <None Include="Water.fs" />
-    <None Include="Water.vs" />
+    <None Include="D:\Caustic.frag" />
+    <None Include="D:\Caustic.vert" />
+    <None Include="D:\Cube.frag" />
+    <None Include="D:\Cube.vert" />
+    <None Include="D:\Drop.frag" />
+    <None Include="D:\Drop.vert" />
+    <None Include="D:\Normal.frag" />
+    <None Include="D:\Normal.vert" />
+    <None Include="D:\Sphere.frag" />
+    <None Include="D:\Sphere.vert" />
+    <None Include="D:\Uber.frag" />
+    <None Include="D:\Uber.vert" />
+    <None Include="D:\Update.frag" />
+    <None Include="D:\Update.vert" />
+    <None Include="D:\Water.frag" />
+    <None Include="D:\Water.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -7,25 +7,30 @@
 #include "Scene.h"
 #include "main.h"
 
+void keyboard(unsigned char, int, int);
+void render(void);
+
 int main(int argC, char* argV[])
 {
 
 	// vars
 	OpenGL openGL;
+
+	Shader shCaustic;
 	Shader shCube;
+	Shader shDrop;
+	Shader shNormal;
+	Shader shSphere;
+	Shader shUber;
+	Shader shUpdate;
+	Shader shWater;
 	
 		// init OpenGL
 		openGL.init();
 		openGL.setTitle("Caustics (c) SciVFX 2016");
-		openGL.setWindow(1920, 1440);
-		openGL.setFullScreen(true);
-		openGL.setWideScreen(true);
-
-		glutInit(&argC, argV);
-		glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-		glutInitWindowSize(1024, 768);
-		glutInitWindowPosition(100, 100);
-		glutCreateWindow("Tutorial 04"); 
+		openGL.setWindow(640, 480);
+//		openGL.setFullScreen(true);
+//		openGL.setWideScreen(true);
 
 		// init GLEW
 		GLenum res = glewInit();
@@ -36,19 +41,23 @@ int main(int argC, char* argV[])
 			return 1;
 		}
 
+		// setup callbacks
+		glutDisplayFunc(&render);
+		glutIdleFunc(&render);
+		glutKeyboardFunc(&keyboard);
+
 		// check Shaders
-
-		shCube.addFS(0, "d:\\raytrace.vs");
-		shCube.addFS(1, "d:\\raytrace.fs");
-		shCube.addFS(2, "d:\\cube.fs");
-		shCube.addVS(0, "d:\\raytrace.vs");
-		shCube.addVS(1, "d:\\cube.vs");
-
-		shCube.compile();
-		shCube.link();
-
-		shCube.printLogs();
-		_getch();
+		shCaustic.compileShaders("d:\\caustic.frag", "d:\\caustic.vert");
+		shCube.compileShaders("d:\\cube.frag", "d:\\cube.vert");
+		shDrop.compileShaders("d:\\drop.frag", "d:\\drop.vert");
+		shNormal.compileShaders("d:\\normal.frag", "d:\\normal.vert");
+		shSphere.compileShaders("d:\\sphere.frag", "d:\\sphere.vert");
+		shUber.compileShaders("d:\\uber.frag", "d:\\uber.vert");
+		shUpdate.compileShaders("d:\\update.frag", "d:\\update.vert");
+		shWater.compileShaders("d:\\water.frag", "d:\\water.vert");
+	
+		// main loop			
+		glutMainLoop();
 
 		// shut OpenGL
 		openGL.shut();
@@ -58,11 +67,58 @@ int main(int argC, char* argV[])
 
 }
 
-							
+void render(void)
+{
+	// clear color
+	glClearColor(0.0, 0.0, 0.0, 1.0);
+
+
+
+
+
+
+		// update scene
+
+
+
+
+
+	// swap buffers
+	glutSwapBuffers();
+}
+
+
+void keyboard(unsigned char key, int x, int y)
+{
+
+	if (key == 27)
+		exit(0);
+
+}
 
 
 				
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

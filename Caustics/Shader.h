@@ -1,5 +1,6 @@
 #pragma once
 
+#include <fstream>
 #include <string>
 #include <vector>
 
@@ -67,13 +68,17 @@ class Shader
 		bool unlinkVS(int id);					// unlink vertex shader
 
 		bool compile();							// compile all shaders
-		bool link();							// link all shaders
+		bool link();									// link all shaders
 
-		bool uncompile();						// uncompile all shaders
-		bool unlink();							// unlink all shaders
+		bool uncompile();								// uncompile all shaders
+		bool unlink();									// unlink all shaders
 
-		bool printLogs();						// print logs
-		bool unprintLogs();						// unprint logs
+		bool printLogs();								// print logs
+		bool unprintLogs();								// unprint logs
+
+		void addShader(GLuint, const char*, GLenum);
+		void compileShaders(char*, char*);
+		bool readFile(const char* , string&);
 
 };
 

@@ -19,7 +19,6 @@ bool Shader::addFS(int id, char * path)
 	FILE* f;
 	GLchar* data;
 	GLuint size;
-
 	GLuint object;
 
 		f = fopen(path, "rb");
@@ -94,7 +93,8 @@ bool Shader::addVS(int id, char* path)
 
 	GLchar* data;
 	GLuint size;
-	
+	GLuint object;
+
 		f = fopen(path, "rb");
 
 		fseek(f, 0, SEEK_END);
@@ -114,6 +114,8 @@ bool Shader::addVS(int id, char* path)
 		vertDatas.push_back(data);
 
 		vertSizes.push_back(size);
+
+		vertObjects.push_back(object);
 
 		noOfVS++;
 		
@@ -145,7 +147,7 @@ bool Shader::compileFS(int id)
 
 //			exit(0);
 		}
-
+		 
 		glShaderSource(fragObjects.at(id), 1, &fragDatas.at(id), &fragSizes.at(id));
 		glCompileShader(fragObjects.at(id));
 		glGetShaderiv(fragObjects.at(id), GL_COMPILE_STATUS, &Success);
@@ -428,9 +430,126 @@ bool Shader::unprintLogs()
 
 }
 
+void Shader::addShader(GLuint ShaderProgram, const char* pShaderText, GLenum ShaderType)
+{
+	GLuint ShaderObj = glCreateShader(ShaderType);
+
+	if (ShaderObj == 0)
+	{
+		fprintf(stderr, "Error creating shader type %d\n", ShaderType);
+		exit(0);
+	}
+
+	const GLchar* p[1];
+	p[0] = pShaderText;
+	GLint Lengths[1];
+	Lengths[0] = strlen(pShaderText);
+	glShaderSource(ShaderObj, 1, p, Lengths);
+	glCompileShader(ShaderObj);
+	GLint success;
+	glGetShaderiv(ShaderObj, GL_COMPILE_STATUS, &success);
+
+	if (!success) {
+		GLchar InfoLog[1024];
+		glGetShaderInfoLog(ShaderObj, 1024, NULL, InfoLog);
+		fprintf(stderr, "Error compiling shader type %d: '%s'\n", ShaderType, InfoLog);
+		exit(1);
+	}
+
+	glAttachShader(ShaderProgram, ShaderObj);
+}
+
+void Shader::compileShaders(char* fragShader, char* vertShader)
+{
+	GLuint ShaderProgram = glCreateProgram();
+
+	if (ShaderProgram == 0)
+	{
+		fprintf(stderr, "Error creating shader program\n");
+		exit(1);
+	}
+
+	string vs, fs;
+
+	if (!readFile(vertShader, vs)) 
+	{
+		exit(1);
+	};
+
+	if (!readFile(fragShader, fs)) 
+	{
+		exit(1);
+	};
+
+	addShader(ShaderProgram, vs.c_str(), GL_VERTEX_SHADER);
+	addShader(ShaderProgram, fs.c_str(), GL_FRAGMENT_SHADER);
+
+	GLint Success = 0;
+	GLchar ErrorLog[1024] = { 0 };
+
+	glLinkProgram(ShaderProgram);
+	glGetProgramiv(ShaderProgram, GL_LINK_STATUS, &Success);
+
+	if (Success == 0) {
+		glGetProgramInfoLog(ShaderProgram, sizeof(ErrorLog), NULL, ErrorLog);
+		fprintf(stderr, "Error linking shader program: '%s'\n", ErrorLog);
+		
+		
+		_getch();
+		exit(1);
+	}
+
+//	glBindProgram(ShaderProgram);
+
+	// here you can use glUniform1i() to set the sampler units
 
 
 
+
+
+//	glUniform1i(0, 0);
+//	glUniform1i(0, 1);
+
+//	glBindProgram(0);
+
+	glValidateProgram(ShaderProgram);
+	glGetProgramiv(ShaderProgram, GL_VALIDATE_STATUS, &Success);
+
+	if (!Success) {
+		glGetProgramInfoLog(ShaderProgram, sizeof(ErrorLog), NULL, ErrorLog);
+		fprintf(stderr, "Invalid shader program: '%s'\n", ErrorLog);
+
+		_getch();
+		exit(1);
+	}
+
+	glUseProgram(ShaderProgram);
+}
+
+bool Shader::readFile(const char* pFileName, string& outFile)
+{
+	ifstream f(pFileName);
+
+	bool ret = false;
+
+	if (f.is_open()) {
+		string line;
+		while (getline(f, line)) {
+			outFile.append(line);
+			outFile.append("\n");
+		}
+
+		f.close();
+
+		ret = true;
+	}
+	else
+	{
+//		OGLDEV_FILE_ERROR(pFileName);
+	}
+
+	return ret;
+}
 
 
 

@@ -81,6 +81,9 @@
     <ClInclude Include="main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -140,78 +143,57 @@
     <ClCompile Include="backup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Caustic.fs">
+    <None Include="D:\Cube.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Caustic.vs">
+    <None Include="D:\Cube.vert">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="cube.vs">
+    <None Include="D:\Drop.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Fresnel.fs">
+    <None Include="D:\Drop.vert">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Fresnel.vs">
+    <None Include="D:\Normal.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="raytrace.glsl">
+    <None Include="D:\Normal.vert">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Reflect.fs">
+    <None Include="D:\Sphere.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Reflect.vs">
+    <None Include="D:\Sphere.vert">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Refract.fs">
+    <None Include="D:\Update.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Shadow.fs">
+    <None Include="D:\Update.vert">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Shadow.vs">
+    <None Include="D:\Water.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Sphere.fs">
+    <None Include="D:\Water.vert">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Sphere.vs">
+    <None Include="D:\Uber.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Water.fs">
+    <None Include="D:\Uber.vert">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Water.vs">
+    <None Include="D:\Caustic.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Drop.fs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Drop.vs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Normal.vs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Normal.fs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Update.vs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Update.fs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Cube.fs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="RayTrace.vs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="RayTrace.fs">
+    <None Include="D:\Caustic.vert">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
