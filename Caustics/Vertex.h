@@ -3,16 +3,14 @@
 class Vertex
 {
 
-	private:
-
+	public:
 
 		float x, y, z;
-
+		float u, v;
 
 	public:
 	
 		Vertex();
 		~Vertex();
-
 };
 
