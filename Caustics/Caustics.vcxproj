@@ -71,31 +71,44 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)\Dependencies\freeglut\include;$(SolutionDir)\Dependencies\soil\include;$(SolutionDir)Dependencies\glm;$(SolutionDir)\Dependencies\glew\include;$(SolutionDir)\Dependencies\glfw\include;$(SolutionDir)\Dependencies\assimp\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\Dependencies\freeglut;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)\Dependencies\freeglut\include;$(SolutionDir)\Dependencies\soil\include;$(SolutionDir)Dependencies\glm;$(SolutionDir)\Dependencies\glew\include;$(SolutionDir)\Dependencies\glfw\include;$(SolutionDir)\Dependencies\assimp\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)\Dependencies\freeglut\include;$(SolutionDir)\Dependencies\soil\include;$(SolutionDir)Dependencies\glm;$(SolutionDir)\Dependencies\glew\include;$(SolutionDir)\Dependencies\glfw\include;$(SolutionDir)\Dependencies\assimp\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\Dependencies\freeglut;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)\Dependencies\freeglut\include;$(SolutionDir)\Dependencies\soil\include;$(SolutionDir)Dependencies\glm;$(SolutionDir)\Dependencies\glew\include;$(SolutionDir)\Dependencies\glfw\include;$(SolutionDir)\Dependencies\assimp\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;FREEGLUT_STATIC;WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\SDKs\freeglut-3.0.0\include;C:\Users\Rafal\Desktop\glew-2.0.0\include;D:\SDKs\FreeGLUT-git_master\freeglut\freeglut\include;D:\SDKs\DevIL x86\include;D:\SDKs\soil\soil-master\inc;C:\Users\Rafal\Desktop\Desktop\glew-2.0.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Dependencies\freeglut\include;$(SolutionDir)\Dependencies\soil\include;$(SolutionDir)Dependencies\glm;$(SolutionDir)\Dependencies\glew\include;$(SolutionDir)\Dependencies\glfw\include;$(SolutionDir)\Dependencies\assimp\include;$(IncludePath)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>freeglutd.lib;glew32d.lib;soil.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\SDKs\FreeGLUT-git_master\freeglut\freeglut\cmake\lib\Debug;D:\SDKs\GLEW2\glew-2.0.0\cmake\lib\Debug;D:\SDKs\soil\soil-master\cmake\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32s.lib;opengl32.lib;freeglut_static.lib;glfw3.lib;assimp-vc130-mt.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Dependencies\freeglut\include;$(SolutionDir)\Dependencies\soil;$(SolutionDir)Dependencies\assimp\lib;$(SolutionDir)Dependencies\glew;$(SolutionDir)Dependencies\glfw</AdditionalLibraryDirectories>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <LinkStatus>true</LinkStatus>
     </Link>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -117,21 +130,24 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;FREEGLUT_STATIC;WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\SDKs\freeglut-3.0.0\include;D:\SDKs\GLEW2\glew-2.0.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
-      <UndefinePreprocessorDefinitions>
-      </UndefinePreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\SDKs\GLEW2\glew-2.0.0\cmake\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32s.lib;opengl32.lib;freeglut_static.lib;glfw3.lib;assimp-vc130-mt.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Dependencies\freeglut\include;$(SolutionDir)\Dependencies\soil;$(SolutionDir)Dependencies\assimp\lib;$(SolutionDir)Dependencies\glew;$(SolutionDir)Dependencies\glfw</AdditionalLibraryDirectories>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <LinkStatus>true</LinkStatus>
     </Link>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -203,7 +219,7 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
-  <ItemGroup>
+  <!--<ItemGroup>
     <None Include="D:\Caustic.frag" />
     <None Include="D:\Caustic.vert" />
     <None Include="D:\Cube.frag" />
@@ -220,7 +236,7 @@
     <None Include="D:\Update.vert" />
     <None Include="D:\Water.frag" />
     <None Include="D:\Water.vert" />
-  </ItemGroup>
+  </ItemGroup>-->
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

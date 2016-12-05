@@ -1,7 +1,7 @@
 #pragma once
 
-#include "GL/freeglut.h"
-#include "SOIL/soil.h"
+//#include "GL/freeglut.h"
+#include "SOIL.h"
 
 class Texture
 {
