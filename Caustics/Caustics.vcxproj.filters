@@ -147,4 +147,22 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="uber.vert" />
+    <None Include="uber.frag" />
+    <None Include="Update.frag" />
+    <None Include="Update.vert" />
+    <None Include="Water.frag" />
+    <None Include="Water.vert" />
+    <None Include="Sphere.vert" />
+    <None Include="Sphere.frag" />
+    <None Include="Normal.vert" />
+    <None Include="Normal.frag" />
+    <None Include="Drop.frag" />
+    <None Include="Drop.vert" />
+    <None Include="cube.vert" />
+    <None Include="Cube.frag" />
+    <None Include="Caustic.frag" />
+    <None Include="Caustic.vert" />
+  </ItemGroup>
 </Project>

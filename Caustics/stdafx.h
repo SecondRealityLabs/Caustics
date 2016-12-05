@@ -17,7 +17,8 @@
 
 #include <glew.h>
 #include <Gl/freeglut.h>
-//#include <glfw3.h>
+#include <Gl/glut.h>
+#include <glfw3.h>
 #include <glm.hpp>
 #include <vec3.hpp> // glm::vec3
 #include <vec4.hpp> // glm::vec4

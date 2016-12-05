@@ -133,10 +133,10 @@ bool Shader::compileFS(int id)
 		if (program == 0)
 		{
 			fprintf(stderr, "Error creating shader program\n");
-//			_getch();
+			_getch();
 
 
-//			exit(1);
+			exit(1);
 		}
 	
 		fragObjects.at(id) = glCreateShader(GL_FRAGMENT_SHADER);
@@ -145,7 +145,7 @@ bool Shader::compileFS(int id)
 		{
 			fprintf(stderr, "Error creating shader type %d\n", GL_FRAGMENT_SHADER);
 
-//			exit(0);
+			exit(0);
 		}
 		 
 		glShaderSource(fragObjects.at(id), 1, &fragDatas.at(id), &fragSizes.at(id));
@@ -157,10 +157,10 @@ bool Shader::compileFS(int id)
 			glGetShaderInfoLog(fragObjects.at(id), 1024, NULL, compileLog);
 			fprintf(stderr, "Error compiling shader type %d: '%s'\n", GL_FRAGMENT_SHADER, compileLog);
 
-//			printLogs();
-//			_getch();
+			printLogs();
+			_getch();
 
-//			exit(1);
+			exit(1);
 		}
 
 		glAttachShader(program, fragObjects.at(id));
@@ -179,8 +179,8 @@ bool Shader::compileGS(int id)
 		if (program == 0)
 		{
 			fprintf(stderr, "Error creating shader program\n");
-//			_getch();
-//			exit(1);
+			_getch();
+			exit(1);
 		}
 	
 		geomObjects.at(id) = glCreateShader(GL_GEOMETRY_SHADER);
@@ -188,7 +188,7 @@ bool Shader::compileGS(int id)
 		if (geomObjects.at(id) == 0)
 		{
 			fprintf(stderr, "Error creating shader type %d\n", GL_GEOMETRY_SHADER);
-//			exit(0);
+			exit(0);
 		}
 
 		glShaderSource(geomObjects.at(id), 1, &geomDatas.at(id), &geomSizes.at(id));
@@ -200,10 +200,10 @@ bool Shader::compileGS(int id)
 			glGetShaderInfoLog(geomObjects.at(id), 1024, NULL, compileLog);
 			fprintf(stderr, "Error compiling shader type %d: '%s'\n", GL_GEOMETRY_SHADER, compileLog);
 			
-//			printLogs();
-//			_getch();
+			printLogs();
+			_getch();
 
-//			exit(1);
+			exit(1);
 		}
 
 		glAttachShader(program, geomObjects.at(id));
@@ -222,8 +222,8 @@ bool Shader::compileVS(int id)
 		if (program == 0)
 		{
 			fprintf(stderr, "Error creating shader program\n");
-//			_getch();
-//			exit(1);
+			_getch();
+			exit(1);
 		}
 	
 		vertObjects.at(id) = glCreateShader(GL_VERTEX_SHADER);
@@ -231,9 +231,9 @@ bool Shader::compileVS(int id)
 		if (vertObjects.at(id) == 0)
 		{
 			fprintf(stderr, "Error creating shader type %d\n", GL_VERTEX_SHADER);
-//			_getch();
+			_getch();
 			
-//			exit(0);
+			exit(0);
 		}
 
 		glShaderSource(vertObjects.at(id), 1, &vertDatas.at(id), &vertSizes.at(id));
@@ -245,10 +245,10 @@ bool Shader::compileVS(int id)
 			glGetShaderInfoLog(vertObjects.at(id), 1024, NULL, compileLog);
 			fprintf(stderr, "Error compiling shader type %d: '%s'\n", GL_VERTEX_SHADER, compileLog);
 
-//			printLogs();
-//			_getch();
+			printLogs();
+			_getch();
 
-//			exit(1);
+			exit(1);
 		}
 
 		glAttachShader(program, vertObjects.at(id));
@@ -270,10 +270,10 @@ bool Shader::linkFS(int id)
 			glGetProgramInfoLog(program, sizeof(linkLog), NULL, linkLog);
 			fprintf(stderr, "Error linking shader program: '%s'\n", linkLog);
 
-//			printLogs();
-//			_getch();
+			printLogs();
+			_getch();
 
-//			exit(1);
+			exit(1);
 		}
 
 		glValidateProgram(program);
@@ -284,10 +284,10 @@ bool Shader::linkFS(int id)
 			glGetProgramInfoLog(program, sizeof(linkLog), NULL, linkLog);
 			fprintf(stderr, "Invalid shader program: '%s'\n", linkLog);
 
-//			printLogs();
-//			_getch();
+			printLogs();
+			_getch();
 
-//			exit(1);
+			exit(1);
 		}
 
 		glUseProgram(program);
@@ -309,10 +309,10 @@ bool Shader::linkGS(int id)
 			glGetProgramInfoLog(program, sizeof(linkLog), NULL, linkLog);
 			fprintf(stderr, "Error linking shader program: '%s'\n", linkLog);
 
-//			printLogs();
-//			_getch();
+			printLogs();
+			_getch();
 
-//			exit(1);
+			exit(1);
 		}
 
 		glValidateProgram(program);
@@ -323,10 +323,10 @@ bool Shader::linkGS(int id)
 			glGetProgramInfoLog(program, sizeof(linkLog), NULL, linkLog);
 			fprintf(stderr, "Invalid shader program: '%s'\n", linkLog);
 
-//			printLogs();
-//			_getch();
+			printLogs();
+			_getch();
 
-//			exit(1);
+			exit(1);
 		}
 
 		glUseProgram(program);
@@ -348,10 +348,10 @@ bool Shader::linkVS(int id)
 			glGetProgramInfoLog(program, sizeof(linkLog), NULL, linkLog);
 			fprintf(stderr, "Error linking shader program: '%s'\n", linkLog);
 
-//			printLogs();
-//			_getch();
+			printLogs();
+			_getch();
 
-//			exit(1);
+			exit(1);
 		}
 
 		glValidateProgram(program);
@@ -362,10 +362,10 @@ bool Shader::linkVS(int id)
 			glGetProgramInfoLog(program, sizeof(linkLog), NULL, linkLog);
 			fprintf(stderr, "Invalid shader program: '%s'\n", linkLog);
 
-//			printLogs();
-//			_getch();
+			printLogs();
+			_getch();
 
-//			exit(1);
+			exit(1);
 		}
 
 		glUseProgram(program);
@@ -423,8 +423,8 @@ bool Shader::printLogs()
 bool Shader::unprintLogs()
 {
 
-		//
-		//
+		
+		
 
 	return false;
 
@@ -499,18 +499,18 @@ void Shader::compileShaders(char* fragShader, char* vertShader)
 		exit(1);
 	}
 
-//	glBindProgram(ShaderProgram);
+	glBindProgramPipeline(ShaderProgram);
 
-	// here you can use glUniform1i() to set the sampler units
-
-
+	 //here you can use glUniform1i() to set the sampler unit
 
 
 
-//	glUniform1i(0, 0);
-//	glUniform1i(0, 1);
 
-//	glBindProgram(0);
+
+	glUniform1i(0, 0);
+	glUniform1i(0, 1);
+
+	glBindProgramPipeline(0);
 
 	glValidateProgram(ShaderProgram);
 	glGetProgramiv(ShaderProgram, GL_VALIDATE_STATUS, &Success);
@@ -545,7 +545,7 @@ bool Shader::readFile(const char* pFileName, string& outFile)
 	}
 	else
 	{
-//		OGLDEV_FILE_ERROR(pFileName);
+		//OGLDEV_FILE_ERROR(pFileName);
 	}
 
 	return ret;
