@@ -62,14 +62,16 @@ int main(int argC, char* argV[])
 		glutMouseFunc(&mouse);
 
 		// check Shaders
-		shCaustic.compileShaders("caustic.frag", "caustic.vert");
-		shCube.compileShaders("cube.frag", "cube.vert");
-		shDrop.compileShaders("drop.frag", "drop.vert");
-		shNormal.compileShaders("normal.frag", "normal.vert");
-		shSphere.compileShaders("sphere.frag", "sphere.vert");
-		shUber.compileShaders("uber.frag", "uber.vert");
-		shUpdate.compileShaders("update.frag", "update.vert");
-		shWater.compileShaders("water.frag", "water.vert");
+		shCaustic.compileShaders("Shaders/caustic.frag", "Shaders/caustic.vert");
+		shCube.compileShaders("Shaders/cube.frag", "Shaders/cube.vert");
+		shDrop.compileShaders("Shaders/drop.frag", "Shaders/drop.vert");
+		shNormal.compileShaders("Shaders/normal.frag", "Shaders/normal.vert");
+		shSphere.compileShaders("Shaders/sphere.frag", "Shaders/sphere.vert");
+		shUber.compileShaders("Shaders/uber.frag", "Shaders/uber.vert");
+		shUpdate.compileShaders("Shaders/update.frag", "Shaders/update.vert");
+		shWater.compileShaders("Shaders/water.frag", "Shaders/water.vert");
+
+		//shCaustic.compileShaders("Caustic.fs.glsl", "Caustic.vs.glsl");
 	
 		// main loop			
 		glutMainLoop();
