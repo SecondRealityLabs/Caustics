@@ -190,7 +190,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Texture.h" />
-    <ClInclude Include="Vertex.h" />
+    <ClInclude Include="Texture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AmbLight.cpp" />
@@ -217,17 +217,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="Vertex.cpp" />
+    <ClCompile Include="Texture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Caustic.frag" />
-    <None Include="Caustic.vert" />
-    <None Include="Cube.frag" />
-    <None Include="cube.vert" />
-    <None Include="Drop.frag" />
-    <None Include="Drop.vert" />
-    <None Include="Normal.frag" />
-    <None Include="Normal.vert" />
     <None Include="Shaders\Caustic.frag" />
     <None Include="Shaders\Caustic.fs.glsl" />
     <None Include="Shaders\Caustic.vert" />
@@ -246,14 +238,6 @@
     <None Include="Shaders\Update.vert" />
     <None Include="Shaders\Water.frag" />
     <None Include="Shaders\Water.vert" />
-    <None Include="Sphere.frag" />
-    <None Include="Sphere.vert" />
-    <None Include="uber.frag" />
-    <None Include="uber.vert" />
-    <None Include="Update.frag" />
-    <None Include="Update.vert" />
-    <None Include="Water.frag" />
-    <None Include="Water.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

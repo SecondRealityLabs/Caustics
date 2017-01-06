@@ -28,4 +28,7 @@
 #include <string.h>
 #include <vector>
 
+#define vec3 glm::vec3
+#define vec4 glm::vec4
+#define vec2 glm::vec2
 // TODO: reference additional headers your program requires here

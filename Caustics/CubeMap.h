@@ -1,19 +1,19 @@
 #pragma once
 
-#include "Texture.h"
+#include "Texture2D.h"
 
 class CubeMap
 {
 
 	private:
 
-		Texture negX;
-		Texture negY;
-		Texture negZ;
-
-		Texture posX;
-		Texture posY;
-		Texture posZ;
+		Texture2D negX;
+		Texture2D negY;
+		Texture2D negZ;
+			   
+		Texture2D posX;
+		Texture2D posY;
+		Texture2D posZ;
 
 	public:
 	

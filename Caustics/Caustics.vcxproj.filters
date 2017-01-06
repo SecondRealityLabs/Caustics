@@ -48,9 +48,6 @@
     <ClInclude Include="Face.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Vertex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Edge.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -84,6 +81,9 @@
     <ClInclude Include="PointLight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -111,9 +111,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Face.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Vertex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Edge.cpp">
@@ -146,24 +143,11 @@
     <ClCompile Include="PointLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="uber.vert" />
-    <None Include="uber.frag" />
-    <None Include="Update.frag" />
-    <None Include="Update.vert" />
-    <None Include="Water.frag" />
-    <None Include="Water.vert" />
-    <None Include="Sphere.vert" />
-    <None Include="Sphere.frag" />
-    <None Include="Normal.vert" />
-    <None Include="Normal.frag" />
-    <None Include="Drop.frag" />
-    <None Include="Drop.vert" />
-    <None Include="cube.vert" />
-    <None Include="Cube.frag" />
-    <None Include="Caustic.frag" />
-    <None Include="Caustic.vert" />
     <None Include="Shaders\Caustic.frag" />
     <None Include="Shaders\Caustic.fs.glsl" />
     <None Include="Shaders\Caustic.vert" />
