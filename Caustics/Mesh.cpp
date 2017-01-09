@@ -54,7 +54,7 @@ bool Mesh::load(const std::string& Dirname, const std::string& Filename)
 
 	if (pScene)
 	{
-//		Ret = initFromScene(pScene, Dirname);
+		Ret = initFromScene(pScene, Dirname);
 	}
 	else
 	{
@@ -152,7 +152,7 @@ bool Mesh::initMaterials(const aiScene* pScene, const std::string& Dirname)
 
 		if (!Textures[i])
 		{
-			Textures[i] = new Texture2D(Dirname, "cosmos.jpg");    // do zmiany
+			Textures[i] = new Texture2D(Dirname, "/txt-subm-1.jpg");    // do zmiany
 			Ret = Textures[i]->Load();
 		}
 	}

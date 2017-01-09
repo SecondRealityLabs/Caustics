@@ -78,7 +78,7 @@ class Shader
 
 		void addShader(GLuint, const char*, GLenum);
 		void compileShaders(char*, char*);
-		bool readFile(const char* , string&);
+		static bool readFile(const char* , string&);
 
 };
 
