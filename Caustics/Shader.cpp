@@ -459,71 +459,72 @@ void Shader::addShader(GLuint ShaderProgram, const char* pShaderText, GLenum Sha
 	glAttachShader(ShaderProgram, ShaderObj);
 }
 
-void Shader::compileShaders(char* fragShader, char* vertShader)
+GLuint Shader::compileShaders(char* fragShader, char* vertShader)
 {
 	GLuint ShaderProgram = glCreateProgram();
+	GLuint vertexShaderObj = glCreateShader(GL_VERTEX_SHADER);
+	GLuint fragmentShaderObj = glCreateShader(GL_FRAGMENT_SHADER);
 
-	if (ShaderProgram == 0)
+	string vertexShaderText;
+	string fragmentShaderText;
+	const GLchar* fs, *vs;
+	const char* vsFileName = "Shaders/Caustic.vs.glsl";
+	const char* fsFileName = "Shaders/Caustic.fs.glsl";
+
+	Shader::readFile(vsFileName, vertexShaderText);
+	Shader::readFile(fsFileName, fragmentShaderText);
+	vs = vertexShaderText.c_str();
+	fs = fragmentShaderText.c_str();
+
+	GLint Lengths[2];
+	Lengths[0] = strlen(vertexShaderText.c_str());
+	Lengths[1] = strlen(fragmentShaderText.c_str());
+
+	glShaderSource(vertexShaderObj, 1, &vs, &Lengths[0]);
+	glShaderSource(fragmentShaderObj, 1, &fs, &Lengths[1]);
+
+	glCompileShader(vertexShaderObj);
+	glCompileShader(fragmentShaderObj);
+
+	GLint success;
+	glGetShaderiv(vertexShaderObj, GL_COMPILE_STATUS, &success);
+	if (!success)
 	{
-		fprintf(stderr, "Error creating shader program\n");
-		exit(1);
+		GLchar InfoLog[1024];
+		glGetShaderInfoLog(vertexShaderObj, sizeof(InfoLog), NULL, InfoLog);
+		fprintf(stderr, "Error compiling shader type %d: '%s'\n", GL_VERTEX_SHADER, InfoLog);
 	}
 
-	string vs, fs;
-
-	if (!readFile(vertShader, vs)) 
+	glGetShaderiv(fragmentShaderObj, GL_COMPILE_STATUS, &success);
+	if (!success)
 	{
-		exit(1);
-	};
+		GLchar InfoLog[1024];
+		glGetShaderInfoLog(fragmentShaderObj, sizeof(InfoLog), NULL, InfoLog);
+		fprintf(stderr, "Error compiling shader type %d: '%s'\n", GL_FRAGMENT_SHADER, InfoLog);
+	}
 
-	if (!readFile(fragShader, fs)) 
-	{
-		exit(1);
-	};
-
-	addShader(ShaderProgram, vs.c_str(), GL_VERTEX_SHADER);
-	addShader(ShaderProgram, fs.c_str(), GL_FRAGMENT_SHADER);
-
-	GLint Success = 0;
-	GLchar ErrorLog[1024] = { 0 };
-
+	glAttachShader(ShaderProgram, vertexShaderObj);
+	glAttachShader(ShaderProgram, fragmentShaderObj);
 	glLinkProgram(ShaderProgram);
-	glGetProgramiv(ShaderProgram, GL_LINK_STATUS, &Success);
 
-	if (Success == 0) {
+	glDeleteShader(vertexShaderObj);
+	glDetachShader(ShaderProgram, vertexShaderObj);
+	glDeleteShader(fragmentShaderObj);
+	glDetachShader(ShaderProgram, fragmentShaderObj);
+
+	int Success;
+	glGetProgramiv(ShaderProgram, GL_LINK_STATUS, &Success);
+	if (Success == 0)
+	{
+		GLchar ErrorLog[1024];
 		glGetProgramInfoLog(ShaderProgram, sizeof(ErrorLog), NULL, ErrorLog);
 		fprintf(stderr, "Error linking shader program: '%s'\n", ErrorLog);
-		
-		
-		_getch();
-		exit(1);
 	}
-
-	glBindProgramPipeline(ShaderProgram);
-
-	 //here you can use glUniform1i() to set the sampler unit
-
-
-
-
-
-	glUniform1i(0, 0);
-	glUniform1i(0, 1);
-
-	glBindProgramPipeline(0);
-
 	glValidateProgram(ShaderProgram);
-	glGetProgramiv(ShaderProgram, GL_VALIDATE_STATUS, &Success);
-
-	if (!Success) {
-		glGetProgramInfoLog(ShaderProgram, sizeof(ErrorLog), NULL, ErrorLog);
-		fprintf(stderr, "Invalid shader program: '%s'\n", ErrorLog);
-
-		_getch();
-		exit(1);
-	}
-
 	glUseProgram(ShaderProgram);
+
+
+	return ShaderProgram;
 }
 
 bool Shader::readFile(const char* pFileName, string& outFile)

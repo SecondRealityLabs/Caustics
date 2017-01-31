@@ -77,7 +77,7 @@ class Shader
 		bool unprintLogs();								// unprint logs
 
 		void addShader(GLuint, const char*, GLenum);
-		void compileShaders(char*, char*);
+		GLuint compileShaders(char*, char*);
 		static bool readFile(const char* , string&);
 
 };
